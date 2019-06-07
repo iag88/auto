@@ -8,10 +8,10 @@
 - description
 ##### Make
 - code
-
-##### Model
 - description
 - type - should have ManyToOne relationship to VehicleType entity
+
+##### Model
 - description
 - type - should have ManyToOne relationship to VehicleType entity
 - make code (group property in models.json) should have ManyToOne relationship to Make entity
