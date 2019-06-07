@@ -6,7 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VehicleTypeRepository")
- * @ORM\Table(name="vehicle_type")
+ * @ORM\Table(name="vehicle_type", indexes={
+ *     @ORM\Index(name="idx_code", columns={"code"}),
+ * })
  */
 class VehicleType
 {
@@ -18,7 +20,7 @@ class VehicleType
     private $id;
 
     /**
-     * @ORM\Column(name="`code`", type="string", length=255, nullable=false)
+     * @ORM\Column(name="`code`", type="string", unique=true, length=190, nullable=false)
      */
     private $code;
 
