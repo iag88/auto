@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\VehicleTypeRepository")
- * @Table(name="vehicle_type")
+ * @ORM\Table(name="vehicle_type")
  */
 class VehicleType
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(name="`id`", type="integer")
      */
     private $id;
