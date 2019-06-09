@@ -2,18 +2,25 @@
 
 namespace App\Controller;
 
+use App\Repository\VehicleTypeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class VehicleTypeController extends AbstractController
 {
     /**
-     * @Route("/vehicle/type", name="vehicle_type")
+     * @Route("/", name="vehicle_type_list")
      */
-    public function index()
+    public function index(VehicleTypeRepository $repository)
     {
+        $vehicleTypes = $repository->findBy(
+            [],
+            ['description' => 'ASC']
+        );
+        var_dump($vehicleTypes);
+
         return $this->render('vehicle_type/index.html.twig', [
-            'controller_name' => 'VehicleTypeController',
+            'vehicleTypes' => $vehicleTypes,
         ]);
     }
 }
