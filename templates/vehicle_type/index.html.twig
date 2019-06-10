@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vehicle types</title>
+    </head>
+
+    {% block body %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Code</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for vehicle in vehicle_types %}
+                    <tr>
+                        <td>{{ vehicle.code }}</td>
+                        <td><a href="/makes/{{ vehicle.code }}">{{ vehicle.description }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endblock %}
+</html>

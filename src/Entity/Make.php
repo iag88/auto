@@ -21,7 +21,7 @@ class Make
     private $id;
 
     /**
-     * @ORM\Column(name="`code`", type="string", unique=true, length=190, nullable=false)
+     * @ORM\Column(name="`code`", type="string", length=190, nullable=false)
      */
     private $code;
 
