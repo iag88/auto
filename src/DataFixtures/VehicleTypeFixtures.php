@@ -3,20 +3,20 @@
 namespace App\DataFixtures;
 
 use App\Entity\VehicleType;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class VehicleTypeFixtures extends Fixture
+class VehicleTypeFixtures extends AbstractFixture
 {
+    const VEHICLE_FIXTURE = 'fixtures/vehicle_types.json';
+
     public function load(ObjectManager $manager)
     {
-        $file = file_get_contents('var/fixtures/vehicle_types.json');
+        $vehicleTypes = $this->getFixturesData(self::VEHICLE_FIXTURE);
+        foreach ($vehicleTypes as $vehicle) {
+            $vehicleTypeEntity = (new VehicleType())
+                ->setCode($vehicle->code)
+                ->setDescription($vehicle->description);
 
-        $vehicle_types = json_decode($file);
-        foreach ($vehicle_types as $vehicle) {
-            $vehicleTypeEntity = new VehicleType();
-            $vehicleTypeEntity->setCode($vehicle->code);
-            $vehicleTypeEntity->setDescription($vehicle->description);
             $manager->persist($vehicleTypeEntity);
         }
 

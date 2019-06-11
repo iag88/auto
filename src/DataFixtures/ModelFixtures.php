@@ -3,22 +3,22 @@
 namespace App\DataFixtures;
 
 use App\Entity\Model;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class ModelFixtures extends Fixture
+class ModelFixtures extends AbstractFixture
 {
+    const MODEL_FIXTURE = 'fixtures/models.json';
+
     public function load(ObjectManager $manager)
     {
-        $file = file_get_contents('var/fixtures/models.json');
-
-        $models = json_decode($file);
+        $models = $this->getFixturesData(self::MODEL_FIXTURE);
         foreach ($models as $model) {
-            $modelEntity = new Model();
-            $modelEntity->setCode($model->code);
-            $modelEntity->setDescription($model->description);
-            $modelEntity->setType($model->type);
-            $modelEntity->setGroup($model->group);
+            $modelEntity = (new Model())
+                ->setCode($model->code)
+                ->setDescription($model->description)
+                ->setType($model->type)
+                ->setGroup($model->group);
+
             $manager->persist($modelEntity);
         }
 
