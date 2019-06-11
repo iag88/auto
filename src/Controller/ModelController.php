@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Handler\ModelListHandler;
-use App\Entity\SearchLog;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,6 +14,8 @@ class ModelController extends AbstractController
      */
     public function index(ModelListHandler $modelListHandler, string $type, string $makeCode)
     {
-        return $this->json($modelListHandler($type, $makeCode));
+        $models = $modelListHandler($type, $makeCode);
+
+        return $this->json($models, Response::HTTP_OK, ['X-ITEMS-COUNT' => count($models)]);
     }
 }

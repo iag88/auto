@@ -14,8 +14,8 @@ class VehicleTypeFixtures extends AbstractFixture
         $vehicleTypes = $this->getFixturesData(self::VEHICLE_FIXTURE);
         foreach ($vehicleTypes as $vehicle) {
             $vehicleTypeEntity = (new VehicleType())
-                ->setCode($vehicle->code)
-                ->setDescription($vehicle->description);
+                ->setCode($vehicle['code'])
+                ->setDescription($vehicle['description']);
 
             $manager->persist($vehicleTypeEntity);
         }

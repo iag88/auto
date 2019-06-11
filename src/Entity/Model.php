@@ -32,15 +32,15 @@ class Model
     private $description;
 
     /**
-     * @ORM\Column(name="`type`", type="string", length=190, nullable=false)
-     * @ORM\ManyToOne(targetEntity="VehicleType", inversedBy="code")
+     * @ORM\Column(name="`type`", type="integer", length=190, nullable=true)
+     * @ORM\ManyToOne(targetEntity="VehicleType", inversedBy="id")
      */
     private $type;
 
 
     /**
-     * @ORM\Column(name="`group`", type="string", length=190, nullable=false)
-     * @ORM\ManyToOne(targetEntity="Make", inversedBy="code")
+     * @ORM\Column(name="`group`", type="integer", length=190, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Make", inversedBy="id")
      */
     private $group;
 
@@ -73,24 +73,24 @@ class Model
         return $this;
     }
 
-    public function getType(): ?string
+    public function getType(): ?int
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(int $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getGroup(): ?string
+    public function getGroup(): ?int
     {
         return $this->group;
     }
 
-    public function setGroup(string $group): self
+    public function setGroup(ints $group): self
     {
         $this->group = $group;
 

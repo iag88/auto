@@ -14,9 +14,9 @@ class MakeFixtures extends AbstractFixture
         $makes = $this->getFixturesData(self::MAKE_FIXTURE);
         foreach ($makes as $make) {
             $makeEntity = (new Make())
-                ->setCode($make->code)
-                ->setDescription($make->description)
-                ->setType($make->type);
+                ->setCode($make['code'])
+                ->setDescription($make['description'])
+                ->setType($make['type']);
 
             $manager->persist($makeEntity);
         }

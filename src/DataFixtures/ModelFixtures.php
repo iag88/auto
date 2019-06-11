@@ -14,10 +14,10 @@ class ModelFixtures extends AbstractFixture
         $models = $this->getFixturesData(self::MODEL_FIXTURE);
         foreach ($models as $model) {
             $modelEntity = (new Model())
-                ->setCode($model->code)
-                ->setDescription($model->description)
-                ->setType($model->type)
-                ->setGroup($model->group);
+                ->setCode($model['code'])
+                ->setDescription($model['description'])
+                ->setType($model['type'])
+                ->setGroup($model['group']);
 
             $manager->persist($modelEntity);
         }

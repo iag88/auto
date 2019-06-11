@@ -31,8 +31,8 @@ class Make
     private $description;
 
     /**
-     * @ORM\Column(name="`type`", type="string", length=190, nullable=false)
-     * @ORM\ManyToOne(targetEntity="VehicleType", inversedBy="code")
+     * @ORM\Column(name="`type`", type="integer", length=190, nullable=true)
+     * @ORM\ManyToOne(targetEntity="VehicleType", inversedBy="id")
      */
     private $type;
 
@@ -65,12 +65,12 @@ class Make
         return $this;
     }
 
-    public function getType(): ?string
+    public function getType(): ?int
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(int $type): self
     {
         $this->type = $type;
 

@@ -4,7 +4,7 @@ namespace App\EventListener;
 
 use App\Entity\SearchLog;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 class ModelListener
 {
@@ -21,17 +21,20 @@ class ModelListener
         $this->manager = $manager;
     }
 
-    public function onKernelResponse(FilterResponseEvent $event)
+    public function onKernelResponse(ResponseEvent $event)
     {
+        $response = $event->getResponse();
+        if (!$response->headers->has('X-ITEMS-COUNT')) {
+            return;
+        }
+
         $type = $event->getRequest()->attributes->get('type');
         $makeCode = $event->getRequest()->attributes->get('makeCode');
-
-        $models = json_decode($event->getResponse());
 
         $searchLog = (new SearchLog())
             ->setVehicleType($type)
             ->setMake($makeCode)
-            ->setNumberOfModels(count($models))
+            ->setNumberOfModels($response->headers->get('X-ITEMS-COUNT'))
             ->setRequestTime($_SERVER['REQUEST_TIME'])
             ->setIpAddress($_SERVER['REMOTE_ADDR'])
             ->setUserAgent($_SERVER['HTTP_USER_AGENT']);
