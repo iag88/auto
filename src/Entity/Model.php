@@ -7,9 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ModelRepository")
  * @ORM\Table(name="model", indexes={
- *     @ORM\Index(name="idx_model_code", columns={"code"}),
- *     @ORM\Index(name="idx_model_type", columns={"type"}),
- *     @ORM\Index(name="idx_model_group", columns={"group"}),
+ *     @ORM\Index(name="idx_model", columns={"type", "groups", "description"}),
  * })
  */
 class Model
@@ -32,17 +30,17 @@ class Model
     private $description;
 
     /**
-     * @ORM\Column(name="`type`", type="integer", length=190, nullable=true)
-     * @ORM\ManyToOne(targetEntity="VehicleType", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="VehicleType")
+     * @ORM\JoinColumn(name="type", referencedColumnName="id", nullable=true)
      */
     private $type;
 
 
     /**
-     * @ORM\Column(name="`group`", type="integer", length=190, nullable=true)
-     * @ORM\ManyToOne(targetEntity="Make", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="Make")
+     * @ORM\JoinColumn(name="groups", referencedColumnName="id", nullable=true)
      */
-    private $group;
+    private $groups;
 
     public function getId(): ?int
     {
@@ -73,26 +71,26 @@ class Model
         return $this;
     }
 
-    public function getType(): ?int
+    public function getType(): ?VehicleType
     {
         return $this->type;
     }
 
-    public function setType(int $type): self
+    public function setType(VehicleType $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getGroup(): ?int
+    public function getGroups(): ?Make
     {
-        return $this->group;
+        return $this->groups;
     }
 
-    public function setGroup(ints $group): self
+    public function setGroups(Make $groups): self
     {
-        $this->group = $group;
+        $this->groups = $groups;
 
         return $this;
     }

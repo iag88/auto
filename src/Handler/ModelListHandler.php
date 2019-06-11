@@ -27,8 +27,8 @@ final class ModelListHandler
      *
      * @return array
      */
-    public function __invoke(string $type, string $makeCode): array
+    public function __invoke(int $type, int $makeCode): array
     {
-        return $this->repository->findBy(['type' => $type, 'group' => $makeCode]);
+        return $this->repository->findBy(['type' => $type, 'groups' => $makeCode]);
     }
 }

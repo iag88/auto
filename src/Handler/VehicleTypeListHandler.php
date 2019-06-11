@@ -25,4 +25,12 @@ final class VehicleTypeListHandler
     {
         return $this->repository->findBy([], ['description' => 'ASC']);
     }
+
+    /**
+     * @return array
+     */
+    public function findAll(): array
+    {
+        return $this->repository->findAll();
+    }
 }

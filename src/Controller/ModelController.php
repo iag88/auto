@@ -12,7 +12,7 @@ class ModelController extends AbstractController
     /**
      * @Route("/models/{type}/{makeCode}", name="model_list")
      */
-    public function index(ModelListHandler $modelListHandler, string $type, string $makeCode)
+    public function index(ModelListHandler $modelListHandler, int $type, int $makeCode)
     {
         $models = $modelListHandler($type, $makeCode);
 

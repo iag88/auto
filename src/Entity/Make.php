@@ -7,8 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MakeRepository")
  * @ORM\Table(name="make", indexes={
- *     @ORM\Index(name="idx_make_code", columns={"code"}),
- *     @ORM\Index(name="idx_make_type", columns={"type"}),
+ *     @ORM\Index(name="idx_make", columns={"type", "code"}),
  * })
  */
 class Make
@@ -31,8 +30,8 @@ class Make
     private $description;
 
     /**
-     * @ORM\Column(name="`type`", type="integer", length=190, nullable=true)
-     * @ORM\ManyToOne(targetEntity="VehicleType", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="VehicleType")
+     * @ORM\JoinColumn(name="type", referencedColumnName="id", nullable=true)
      */
     private $type;
 
@@ -65,12 +64,12 @@ class Make
         return $this;
     }
 
-    public function getType(): ?int
+    public function getType(): ?VehicleType
     {
         return $this->type;
     }
 
-    public function setType(int $type): self
+    public function setType(VehicleType $type): self
     {
         $this->type = $type;
 

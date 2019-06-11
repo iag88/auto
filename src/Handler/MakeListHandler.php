@@ -22,12 +22,20 @@ final class MakeListHandler
     }
 
     /**
-     * @param string $type
+     * @param int $type
      *
      * @return array
      */
-    public function __invoke(string $type): array
+    public function __invoke(int $type): array
     {
         return $this->repository->findBy(['type' => $type]);
+    }
+
+    /**
+     * @return array
+     */
+    public function findAll(): array
+    {
+        return $this->repository->findAll();
     }
 }

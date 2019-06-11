@@ -10,7 +10,7 @@
             <select id="makes" name="makes">
                 <option value="">...</option>
                 {% for make in makes %}
-                    <option value="{{ make.code }}">{{ make.description }}</option>
+                    <option value="{{ make.id }}">{{ make.description }}</option>
                 {% endfor %}
             </select>
         {% else %}
@@ -48,8 +48,8 @@
                                     models = data[i];
                                     var listRow = '<tr><td class="code">' + models['code'] + '</td>' +
                                         '<td class="description">' + models['description'] + '</td>' +
-                                        '<td class="type">' + models['type'] + '</td>' +
-                                        '<td class="group">' + models['group'] + '</td></tr>';
+                                        '<td class="type">' + models['type']['code'] + '</td>' +
+                                        '<td class="group">' + models['groups']['code'] + '</td></tr>';
 
                                     list += listRow;
                                 }

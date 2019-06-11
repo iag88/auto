@@ -17,7 +17,7 @@
                 {% for vehicle in vehicle_types %}
                     <tr>
                         <td>{{ vehicle.code }}</td>
-                        <td><a href="/makes/{{ vehicle.code }}">{{ vehicle.description }}</a></td>
+                        <td><a href="/makes/{{ vehicle.id }}">{{ vehicle.description }}</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
